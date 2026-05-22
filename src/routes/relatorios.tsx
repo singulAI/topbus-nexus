@@ -7,7 +7,13 @@ import { UploadBox } from "@/components/forms/UploadBox";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { getUploadedDocuments } from "@/lib/api/mockApi";
 import { Send, FileText } from "lucide-react";
 import { toast } from "sonner";
@@ -16,8 +22,25 @@ export const Route = createFileRoute("/relatorios")({
   component: RelatoriosPage,
 });
 
-const TYPES = ["PDF", "Planilha", "Foto", "Relatório operacional", "Documento RH", "Orçamento", "Comprovante"];
-const SECTORS = ["Manutenção", "Operação", "Frota", "RH", "Financeiro", "Portaria", "Abastecimento", "Terceirizados"];
+const TYPES = [
+  "PDF",
+  "Planilha",
+  "Foto",
+  "Relatório operacional",
+  "Documento RH",
+  "Orçamento",
+  "Comprovante",
+];
+const SECTORS = [
+  "Manutenção",
+  "Operação",
+  "Frota",
+  "RH",
+  "Financeiro",
+  "Portaria",
+  "Abastecimento",
+  "Terceirizados",
+];
 
 function RelatoriosPage() {
   const { data: docs = [] } = useQuery({ queryKey: ["docs"], queryFn: getUploadedDocuments });
@@ -27,7 +50,7 @@ function RelatoriosPage() {
       <PageHeader
         breadcrumb="Gestão"
         title="Upload de Relatórios"
-        description="Envie documentos por setor e tipo. A integração com o backend está preparada."
+        description="Envie documentos por setor e tipo. A integração com o núcleo técnico está preparada."
       />
 
       <form
@@ -37,18 +60,37 @@ function RelatoriosPage() {
           toast.success("Envio simulado", { description: "Documento enviado para conferência." });
         }}
       >
-        <FormSection title="Destino do documento" description="Setor e tipo definem como o documento é roteado.">
+        <FormSection
+          title="Destino do documento"
+          description="Setor e tipo definem como o documento é roteado."
+        >
           <div className="grid gap-3 sm:grid-cols-2">
             <Field label="Setor">
               <Select defaultValue="Manutenção">
-                <SelectTrigger><SelectValue /></SelectTrigger>
-                <SelectContent>{SECTORS.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {SECTORS.map((s) => (
+                    <SelectItem key={s} value={s}>
+                      {s}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
               </Select>
             </Field>
             <Field label="Tipo de documento">
               <Select defaultValue="PDF">
-                <SelectTrigger><SelectValue /></SelectTrigger>
-                <SelectContent>{TYPES.map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}</SelectContent>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {TYPES.map((t) => (
+                    <SelectItem key={t} value={t}>
+                      {t}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
               </Select>
             </Field>
           </div>
@@ -56,9 +98,13 @@ function RelatoriosPage() {
 
         <FormSection title="Arquivos" description="Arraste e solte ou clique para selecionar.">
           <UploadBox />
-          <Field label="Observação"><Textarea rows={3} placeholder="Contexto, vinculação a registro, prazo." /></Field>
+          <Field label="Observação">
+            <Textarea rows={3} placeholder="Contexto, vinculação a registro, prazo." />
+          </Field>
           <div className="flex justify-end">
-            <Button type="submit" className="gap-2"><Send className="h-4 w-4" /> Enviar</Button>
+            <Button type="submit" className="gap-2">
+              <Send className="h-4 w-4" /> Enviar
+            </Button>
           </div>
         </FormSection>
       </form>
@@ -73,7 +119,9 @@ function RelatoriosPage() {
             <li key={d.id} className="flex items-center justify-between px-5 py-3.5 gap-4">
               <div className="min-w-0">
                 <div className="text-sm font-medium truncate">{d.fileName}</div>
-                <div className="text-xs text-muted-foreground">{d.sector} • {d.documentType} • {d.uploadedAt}</div>
+                <div className="text-xs text-muted-foreground">
+                  {d.sector} • {d.documentType} • {d.uploadedAt}
+                </div>
               </div>
               <div className="text-xs text-muted-foreground">por {d.uploadedBy}</div>
             </li>

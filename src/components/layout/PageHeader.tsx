@@ -29,12 +29,16 @@ export function PageHeader({
       <div className="min-w-0">
         {crumbs.length > 0 && (
           <nav className="mb-2 flex flex-wrap items-center gap-1 text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-            <Link to="/" className="hover:text-foreground transition-colors">TopBus</Link>
+            <Link to="/" className="hover:text-foreground transition-colors">
+              TopBus
+            </Link>
             {crumbs.map((c, i) => (
               <span key={i} className="flex items-center gap-1">
                 <ChevronRight className="h-3 w-3 opacity-60" strokeWidth={1.75} />
                 {c.to ? (
-                  <Link to={c.to} className="hover:text-foreground transition-colors">{c.label}</Link>
+                  <Link to={c.to} className="hover:text-foreground transition-colors">
+                    {c.label}
+                  </Link>
                 ) : (
                   <span className="text-foreground/80">{c.label}</span>
                 )}
@@ -42,8 +46,12 @@ export function PageHeader({
             ))}
           </nav>
         )}
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-[28px]">{title}</h1>
-        {description && <p className="mt-1.5 text-sm text-muted-foreground max-w-2xl">{description}</p>}
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-[28px]">
+          {title}
+        </h1>
+        {description && (
+          <p className="mt-1.5 text-sm text-muted-foreground max-w-2xl">{description}</p>
+        )}
         {meta && <div className="mt-3 flex flex-wrap items-center gap-2">{meta}</div>}
       </div>
       {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
