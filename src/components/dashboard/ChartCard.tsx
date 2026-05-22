@@ -17,7 +17,9 @@ export function ChartCard({
   height?: number;
 }) {
   return (
-    <section className={cn("rounded-xl border border-border bg-card shadow-[var(--shadow-xs)]", className)}>
+    <section
+      className={cn("rounded-xl border border-border bg-card shadow-[var(--shadow-xs)]", className)}
+    >
       <header className="flex items-start justify-between gap-3 border-b border-border px-5 py-4">
         <div className="min-w-0">
           <h3 className="text-sm font-semibold tracking-tight">{title}</h3>

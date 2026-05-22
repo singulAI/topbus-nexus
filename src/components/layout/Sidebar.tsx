@@ -32,7 +32,7 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
           <img src={logo} alt="TopBus" className="h-9 w-9 object-contain" />
         </div>
         <div className="leading-tight">
-          <div className="text-sm font-semibold tracking-wide">TopBus OS</div>
+          <div className="text-sm font-semibold tracking-wide">AppBus OS</div>
           <div className="text-[10.5px] uppercase tracking-[0.16em] text-sidebar-foreground/55">
             Operational Platform
           </div>
@@ -48,7 +48,9 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
             placeholder="Buscar módulo…"
             className="flex-1 bg-transparent text-xs text-sidebar-foreground placeholder:text-sidebar-foreground/40 outline-none"
           />
-          <kbd className="hidden sm:inline-flex text-[10px] text-sidebar-foreground/40 px-1 py-0.5 rounded border border-white/[0.06]">⌘K</kbd>
+          <kbd className="hidden sm:inline-flex text-[10px] text-sidebar-foreground/40 px-1 py-0.5 rounded border border-white/[0.06]">
+            ⌘K
+          </kbd>
         </div>
       </div>
 
@@ -109,7 +111,15 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-function SidebarItem({ item, active, onClick }: { item: NavItem; active: boolean; onClick?: () => void }) {
+function SidebarItem({
+  item,
+  active,
+  onClick,
+}: {
+  item: NavItem;
+  active: boolean;
+  onClick?: () => void;
+}) {
   const Icon = item.icon;
   return (
     <li>
@@ -132,7 +142,9 @@ function SidebarItem({ item, active, onClick }: { item: NavItem; active: boolean
         <Icon
           className={cn(
             "h-4 w-4 shrink-0",
-            active ? "text-sidebar-primary" : "text-sidebar-foreground/55 group-hover:text-sidebar-foreground",
+            active
+              ? "text-sidebar-primary"
+              : "text-sidebar-foreground/55 group-hover:text-sidebar-foreground",
           )}
           strokeWidth={1.75}
         />
