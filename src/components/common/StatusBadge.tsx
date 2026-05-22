@@ -38,13 +38,15 @@ export function StatusBadge({
         className,
       )}
     >
-      <span className={cn("h-1.5 w-1.5 rounded-full", {
-        "bg-success": tone === "success",
-        "bg-warning": tone === "warning",
-        "bg-destructive": tone === "danger",
-        "bg-info": tone === "info",
-        "bg-muted-foreground": tone === "muted",
-      })} />
+      <span
+        className={cn("h-1.5 w-1.5 rounded-full", {
+          "bg-success": tone === "success",
+          "bg-warning": tone === "warning",
+          "bg-destructive": tone === "danger",
+          "bg-info": tone === "info",
+          "bg-muted-foreground": tone === "muted",
+        })}
+      />
       {label}
     </span>
   );

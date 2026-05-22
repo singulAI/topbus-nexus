@@ -22,11 +22,7 @@ import { ChartCard } from "@/components/dashboard/ChartCard";
 import { VehicleStatusBadge, StatusBadge } from "@/components/common/StatusBadge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
   getAnalytics,
   getDamageRecords,
@@ -155,7 +151,10 @@ function DashboardPage() {
                 action={<StatusBadge label="6 meses" tone="info" />}
               >
                 <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={analytics?.fleetMonthly ?? []} margin={{ top: 8, right: 16, bottom: 4, left: -8 }}>
+                  <AreaChart
+                    data={analytics?.fleetMonthly ?? []}
+                    margin={{ top: 8, right: 16, bottom: 4, left: -8 }}
+                  >
                     <defs>
                       <linearGradient id="g-ativos" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stopColor="var(--chart-1)" stopOpacity={0.32} />
@@ -167,12 +166,43 @@ function DashboardPage() {
                       </linearGradient>
                     </defs>
                     <CartesianGrid stroke="var(--border)" vertical={false} strokeDasharray="3 3" />
-                    <XAxis dataKey="month" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" />
-                    <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" width={32} />
+                    <XAxis
+                      dataKey="month"
+                      tickLine={false}
+                      axisLine={false}
+                      fontSize={11}
+                      stroke="var(--muted-foreground)"
+                    />
+                    <YAxis
+                      tickLine={false}
+                      axisLine={false}
+                      fontSize={11}
+                      stroke="var(--muted-foreground)"
+                      width={32}
+                    />
                     <Tooltip contentStyle={TOOLTIP_STYLE} />
-                    <Area type="monotone" dataKey="ativos" stroke="var(--chart-1)" fill="url(#g-ativos)" strokeWidth={2} />
-                    <Area type="monotone" dataKey="parados" stroke="var(--destructive)" fill="url(#g-parados)" strokeWidth={2} />
-                    <Area type="monotone" dataKey="avarias" stroke="var(--warning)" fill="transparent" strokeWidth={2} strokeDasharray="4 3" />
+                    <Area
+                      type="monotone"
+                      dataKey="ativos"
+                      stroke="var(--chart-1)"
+                      fill="url(#g-ativos)"
+                      strokeWidth={2}
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="parados"
+                      stroke="var(--destructive)"
+                      fill="url(#g-parados)"
+                      strokeWidth={2}
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="avarias"
+                      stroke="var(--warning)"
+                      fill="transparent"
+                      strokeWidth={2}
+                      strokeDasharray="4 3"
+                    />
                   </AreaChart>
                 </ResponsiveContainer>
               </ChartCard>
@@ -204,7 +234,9 @@ function DashboardPage() {
                         style={{ background: PIE_COLORS[i % PIE_COLORS.length] }}
                       />
                       <span className="truncate">{d.name}</span>
-                      <span className="ml-auto font-medium tabular-nums text-foreground">{d.value}</span>
+                      <span className="ml-auto font-medium tabular-nums text-foreground">
+                        {d.value}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -221,13 +253,38 @@ function DashboardPage() {
               height={280}
             >
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={analytics?.operationalTimeline ?? []} margin={{ top: 8, right: 16, bottom: 4, left: -8 }}>
+                <BarChart
+                  data={analytics?.operationalTimeline ?? []}
+                  margin={{ top: 8, right: 16, bottom: 4, left: -8 }}
+                >
                   <CartesianGrid stroke="var(--border)" vertical={false} strokeDasharray="3 3" />
-                  <XAxis dataKey="hour" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" />
-                  <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" width={28} />
+                  <XAxis
+                    dataKey="hour"
+                    tickLine={false}
+                    axisLine={false}
+                    fontSize={11}
+                    stroke="var(--muted-foreground)"
+                  />
+                  <YAxis
+                    tickLine={false}
+                    axisLine={false}
+                    fontSize={11}
+                    stroke="var(--muted-foreground)"
+                    width={28}
+                  />
                   <Tooltip contentStyle={TOOLTIP_STYLE} />
-                  <Bar dataKey="saidas" fill="var(--chart-1)" radius={[4, 4, 0, 0]} maxBarSize={26} />
-                  <Bar dataKey="retornos" fill="var(--chart-2)" radius={[4, 4, 0, 0]} maxBarSize={26} />
+                  <Bar
+                    dataKey="saidas"
+                    fill="var(--chart-1)"
+                    radius={[4, 4, 0, 0]}
+                    maxBarSize={26}
+                  />
+                  <Bar
+                    dataKey="retornos"
+                    fill="var(--chart-2)"
+                    radius={[4, 4, 0, 0]}
+                    maxBarSize={26}
+                  />
                 </BarChart>
               </ResponsiveContainer>
             </ChartCard>
@@ -249,14 +306,37 @@ function DashboardPage() {
                     layout="vertical"
                     margin={{ top: 4, right: 16, bottom: 4, left: 8 }}
                   >
-                    <CartesianGrid stroke="var(--border)" horizontal={false} strokeDasharray="3 3" />
-                    <XAxis type="number" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" />
-                    <YAxis dataKey="name" type="category" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" width={90} />
+                    <CartesianGrid
+                      stroke="var(--border)"
+                      horizontal={false}
+                      strokeDasharray="3 3"
+                    />
+                    <XAxis
+                      type="number"
+                      tickLine={false}
+                      axisLine={false}
+                      fontSize={11}
+                      stroke="var(--muted-foreground)"
+                    />
+                    <YAxis
+                      dataKey="name"
+                      type="category"
+                      tickLine={false}
+                      axisLine={false}
+                      fontSize={11}
+                      stroke="var(--muted-foreground)"
+                      width={90}
+                    />
                     <Tooltip
                       formatter={(v: number) => `R$ ${v.toLocaleString("pt-BR")}`}
                       contentStyle={TOOLTIP_STYLE}
                     />
-                    <Bar dataKey="value" fill="var(--chart-1)" radius={[0, 6, 6, 0]} maxBarSize={22} />
+                    <Bar
+                      dataKey="value"
+                      fill="var(--chart-1)"
+                      radius={[0, 6, 6, 0]}
+                      maxBarSize={22}
+                    />
                   </BarChart>
                 </ResponsiveContainer>
               </ChartCard>
@@ -291,11 +371,25 @@ function DashboardPage() {
                       <div className="flex items-center justify-between gap-2">
                         <h4 className="text-sm font-semibold">{i.title}</h4>
                         <StatusBadge
-                          label={i.severity === "critico" ? "Crítico" : i.severity === "alerta" ? "Alerta" : "Info"}
-                          tone={i.severity === "critico" ? "danger" : i.severity === "alerta" ? "warning" : "info"}
+                          label={
+                            i.severity === "critico"
+                              ? "Crítico"
+                              : i.severity === "alerta"
+                                ? "Alerta"
+                                : "Info"
+                          }
+                          tone={
+                            i.severity === "critico"
+                              ? "danger"
+                              : i.severity === "alerta"
+                                ? "warning"
+                                : "info"
+                          }
                         />
                       </div>
-                      <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">{i.description}</p>
+                      <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">
+                        {i.description}
+                      </p>
                       <div className="mt-2.5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground/80">
                         {i.category}
                       </div>
@@ -311,8 +405,21 @@ function DashboardPage() {
   );
 }
 
-function Row({ label, value, tone }: { label: string; value: string; tone: "success" | "warning" | "muted" }) {
-  const dotClass = tone === "success" ? "bg-success" : tone === "warning" ? "bg-warning" : "bg-muted-foreground/40";
+function Row({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: string;
+  tone: "success" | "warning" | "muted";
+}) {
+  const dotClass =
+    tone === "success"
+      ? "bg-success"
+      : tone === "warning"
+        ? "bg-warning"
+        : "bg-muted-foreground/40";
   return (
     <div className="flex items-center justify-between gap-3">
       <div className="flex items-center gap-2 text-muted-foreground">
@@ -376,8 +483,12 @@ function ExpandableFleetRow({ fleet: f }: { fleet: FleetStatus }) {
               label="Prioridade"
               value={
                 <StatusBadge
-                  label={f.priority === "alta" ? "Alta" : f.priority === "media" ? "Média" : "Baixa"}
-                  tone={f.priority === "alta" ? "danger" : f.priority === "media" ? "warning" : "muted"}
+                  label={
+                    f.priority === "alta" ? "Alta" : f.priority === "media" ? "Média" : "Baixa"
+                  }
+                  tone={
+                    f.priority === "alta" ? "danger" : f.priority === "media" ? "warning" : "muted"
+                  }
                 />
               }
             />
@@ -391,7 +502,9 @@ function ExpandableFleetRow({ fleet: f }: { fleet: FleetStatus }) {
 function Field({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div>
-      <dt className="text-[10.5px] font-medium uppercase tracking-[0.14em] text-muted-foreground">{label}</dt>
+      <dt className="text-[10.5px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+        {label}
+      </dt>
       <dd className="mt-0.5 text-sm text-foreground">{value}</dd>
     </div>
   );
@@ -409,8 +522,20 @@ function SectorsGrid({ sectors }: { sectors: Sector[] }) {
             <div className="flex items-center justify-between">
               <div className="text-sm font-medium">{s.name}</div>
               <StatusBadge
-                label={s.status === "operacional" ? "Operacional" : s.status === "atencao" ? "Atenção" : "Crítico"}
-                tone={s.status === "operacional" ? "success" : s.status === "atencao" ? "warning" : "danger"}
+                label={
+                  s.status === "operacional"
+                    ? "Operacional"
+                    : s.status === "atencao"
+                      ? "Atenção"
+                      : "Crítico"
+                }
+                tone={
+                  s.status === "operacional"
+                    ? "success"
+                    : s.status === "atencao"
+                      ? "warning"
+                      : "danger"
+                }
               />
             </div>
             <div className="mt-1 text-xs text-muted-foreground">
@@ -423,7 +548,13 @@ function SectorsGrid({ sectors }: { sectors: Sector[] }) {
   );
 }
 
-function DamagesAndServices({ damages, services }: { damages: DamageRecord[]; services: ServiceRecord[] }) {
+function DamagesAndServices({
+  damages,
+  services,
+}: {
+  damages: DamageRecord[];
+  services: ServiceRecord[];
+}) {
   return (
     <div className="grid gap-4 lg:grid-cols-2">
       <section className="rounded-xl border border-border bg-card shadow-[var(--shadow-xs)]">
@@ -465,8 +596,20 @@ function DamagesAndServices({ damages, services }: { damages: DamageRecord[]; se
                 </div>
               </div>
               <StatusBadge
-                label={s.status === "registrado" ? "Registrado" : s.status === "em_andamento" ? "Em andamento" : "Aguardando"}
-                tone={s.status === "registrado" ? "info" : s.status === "em_andamento" ? "warning" : "muted"}
+                label={
+                  s.status === "registrado"
+                    ? "Registrado"
+                    : s.status === "em_andamento"
+                      ? "Em andamento"
+                      : "Aguardando"
+                }
+                tone={
+                  s.status === "registrado"
+                    ? "info"
+                    : s.status === "em_andamento"
+                      ? "warning"
+                      : "muted"
+                }
               />
             </li>
           ))}

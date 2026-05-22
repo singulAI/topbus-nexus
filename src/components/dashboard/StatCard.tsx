@@ -56,7 +56,12 @@ export function StatCard({
           {hint && <div className="mt-1.5 text-[11px] text-muted-foreground">{hint}</div>}
         </div>
         {Icon && (
-          <div className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary ring-4", ring)}>
+          <div
+            className={cn(
+              "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary ring-4",
+              ring,
+            )}
+          >
             <Icon className="h-4 w-4" strokeWidth={1.75} />
           </div>
         )}
@@ -70,7 +75,11 @@ export function StatCard({
               positive ? "bg-success/10 text-success" : "bg-destructive/10 text-destructive",
             )}
           >
-            {positive ? <ArrowUpRight className="h-3 w-3" strokeWidth={2} /> : <ArrowDownRight className="h-3 w-3" strokeWidth={2} />}
+            {positive ? (
+              <ArrowUpRight className="h-3 w-3" strokeWidth={2} />
+            ) : (
+              <ArrowDownRight className="h-3 w-3" strokeWidth={2} />
+            )}
             {positive ? "+" : ""}
             {delta}%
           </span>
