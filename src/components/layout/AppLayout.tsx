@@ -75,6 +75,8 @@ export function AppLayout({ children }: { children: ReactNode }) {
 
         <Footer />
       </div>
+
+      <FloatingChat />
     </div>
   );
 }
