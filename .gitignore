@@ -38,3 +38,5 @@ dist/
 dist-spa/
 start-appbus-sistema.sh
 vite.config.ts.bak.*
+*.bak.*
+*.before-spa.*
