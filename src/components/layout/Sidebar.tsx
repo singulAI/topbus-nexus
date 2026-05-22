@@ -13,6 +13,7 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   const location = useLocation();
   const [query, setQuery] = useState("");
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
+  const handleNavigate = () => onNavigate?.();
 
   if (!user) return null;
 
@@ -54,7 +55,7 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
         </div>
       </div>
 
-      <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-3">
+      <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-3" onKeyDown={(e) => e.key === "Escape" && onNavigate?.()}>
         {grouped.map(({ group, items: groupItems }) => {
           const isCollapsed = collapsed[group];
           return (
@@ -76,7 +77,7 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
                       key={it.to}
                       item={it}
                       active={location.pathname === it.to}
-                      onClick={onNavigate}
+                      onClick={handleNavigate}
                     />
                   ))}
                 </ul>
